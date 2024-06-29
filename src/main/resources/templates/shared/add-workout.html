@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Add Workout</title>
+    <link rel="icon" type="image/png" href="/images/logo.png">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar-brand img {
+            height: 40px;
+        }
+        .navbar-nav .nav-link {
+            color: black !important;
+            font-weight: bold;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #007bff !important;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" th:href="@{/}">
+        <img th:src="@{/images/logo.png}" alt="Logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/}">Home Page</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/shared/protein-count}">Protein Count</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/shared/recipes}">Recipes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/shared/my-workouts}">My Workouts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/sharing-the-process}">Sharing the Process</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <h1>Add Workout</h1>
+    <form th:action="@{/shared/add-workout}" th:object="${workout}" method="post">
+        <div class="form-group">
+            <label for="typeOfTraining">Type of Training:</label>
+            <select class="form-control" id="typeOfTraining" th:field="*{typeOfTraining}" required >
+                <option value="Back">Back</option>
+                <option value="Legs">Legs</option>
+                <option value="Shoulders">Shoulders</option>
+                <option value="Chest">Chest</option>
+                <option value="Arms">Arms</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exerciseName">Name of Exercise:</label>
+            <input type="text" class="form-control" id="exerciseName" th:field="*{exerciseName}" required />
+        </div>
+        <div class="form-group">
+            <label for="workingWeights">Working Weights:</label>
+            <input type="number" step="0.1" class="form-control" id="workingWeights" th:field="*{workingWeights}" min="0" max="500" required />
+        </div>
+        <div class="form-group">
+            <label for="satisfactionWithPerformance">Satisfaction with Performance (1-5):</label>
+            <select class="form-control" id="satisfactionWithPerformance" th:field="*{satisfactionWithPerformance}" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="satisfactionWithExercise">Satisfaction with Exercise (1-5):</label>
+            <select class="form-control" id="satisfactionWithExercise" th:field="*{satisfactionWithExercise}" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Workout</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

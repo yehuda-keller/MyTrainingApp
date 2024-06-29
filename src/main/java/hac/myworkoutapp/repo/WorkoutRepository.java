@@ -5,14 +5,13 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/* default scope of this Bean is "singleton" */
+@Repository
 public interface WorkoutRepository extends JpaRepository<Workout, Long> {
 
-
-    List<Workout> findByUserName(String userName);
-    List<Workout> findUserByUserName(String userName);
-    List<Workout> findByEmail(String email);
-    List<Workout> findByUserNameAndEmail(String userName, String email);
-    List<Workout> findFirst10ByOrderByUserNameDesc(); // find first 10 users ordered by userName desc
+    List<Workout> findByTypeOfTraining(String typeOfTraining);
+    List<Workout> findByExerciseName(String exerciseName);
+    List<Workout> findByWorkingWeights(double workingWeights);
+    List<Workout> findByTypeOfTrainingAndExerciseName(String typeOfTraining, String exerciseName);
+    List<Workout> findFirst10ByOrderByTypeOfTrainingDesc(); // find first 10 workouts ordered by typeOfTraining desc
 
 }

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Recipes</title>
+    <link rel="icon" type="image/png" href="/images/logo.png">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar-brand img {
+            height: 40px;
+        }
+        .card-columns {
+            column-count: 3;
+        }
+        .navbar-nav .nav-link {
+            color: black !important;
+            font-weight: bold;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #007bff !important; /* Change this to the color you want */
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" th:href="@{/}">
+        <img th:src="@{/images/logo.png}" alt="Logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/}">Home Page</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/shared/protein-count}">Protein Count</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/shared/recipes}">Recipes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/shared/my-workouts}">My Workouts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/sharing-the-process}">Sharing the Process</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <h1>Recipes</h1>
+    <p>Find and share healthy recipes here.</p>
+    <div class="card-columns">
+        <div class="card">
+            <img src="/images/GrilledChickenSalad.jpg" class="card-img-top" alt="Recipe 1">
+            <div class="card-body">
+                <h5 class="card-title">Grilled Chicken Salad</h5>
+                <p class="card-text">A refreshing salad with grilled chicken, mixed greens, and a light vinaigrette.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="/images/QuinoaandBlackBeanBowl.png" class="card-img-top" alt="Recipe 2">
+            <div class="card-body">
+                <h5 class="card-title">Quinoa and Black Bean Bowl</h5>
+                <p class="card-text">A nutritious bowl with quinoa, black beans, corn, avocado, and a tangy lime dressing.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="/images/BakedSalmonwithAsparagus.png" class="card-img-top" alt="Recipe 3">
+            <div class="card-body">
+                <h5 class="card-title">Baked Salmon with Asparagus</h5>
+                <p class="card-text">Tender baked salmon served with roasted asparagus and a squeeze of lemon.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="/images/VeggieStir-Fry.png" class="card-img-top" alt="Recipe 4">
+            <div class="card-body">
+                <h5 class="card-title">Veggie Stir-Fry</h5>
+                <p class="card-text">A colorful stir-fry with a variety of fresh vegetables and a light soy sauce.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="/images/GreekYogurt%20Parfait.png" class="card-img-top" alt="Recipe 5">
+            <div class="card-body">
+                <h5 class="card-title">Greek Yogurt Parfait</h5>
+                <p class="card-text">Layers of Greek yogurt, fresh berries, and a drizzle of honey.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="/images/vegan-stuffed-peppers.png" class="card-img-top" alt="Recipe 6">
+            <div class="card-body">
+                <h5 class="card-title">Stuffed Bell Peppers</h5>
+                <p class="card-text">Bell peppers stuffed with a mixture of quinoa, black beans, and spices.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="/images/ChickenandVegetableSkewers.png" class="card-img-top" alt="Recipe 7">
+            <div class="card-body">
+                <h5 class="card-title">Chicken and Vegetable Skewers</h5>
+                <p class="card-text">Grilled skewers with marinated chicken and a variety of vegetables.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="/images/LentilSoup.png" class="card-img-top" alt="Recipe 8">
+            <div class="card-body">
+                <h5 class="card-title">Lentil Soup</h5>
+                <p class="card-text">A hearty and comforting lentil soup with vegetables and spices.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="/images/AvocadoToast.png" class="card-img-top" alt="Recipe 9">
+            <div class="card-body">
+                <h5 class="card-title">Avocado Toast</h5>
+                <p class="card-text">Whole grain toast topped with mashed avocado, cherry tomatoes, and a sprinkle of feta cheese.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="/images/CauliflowerRiceBowl.png" class="card-img-top" alt="Recipe 10">
+            <div class="card-body">
+                <h5 class="card-title">Cauliflower Rice Bowl</h5>
+                <p class="card-text">A low-carb bowl with cauliflower rice, sautéed vegetables, and a protein of your choice.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="/images/ZucchiniNoodleswithPesto.png" class="card-img-top" alt="Recipe 11">
+            <div class="card-body">
+                <h5 class="card-title">Zucchini Noodles with Pesto</h5>
+                <p class="card-text">Zucchini noodles tossed with homemade pesto and cherry tomatoes.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="/images/BerrySmoothie.png" class="card-img-top" alt="Recipe 12">
+            <div class="card-body">
+                <h5 class="card-title">Berry Smoothie</h5>
+                <p class="card-text">A refreshing smoothie made with mixed berries, Greek yogurt, and a splash of almond milk.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

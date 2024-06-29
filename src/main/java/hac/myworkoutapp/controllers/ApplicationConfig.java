@@ -16,6 +16,8 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 public class ApplicationConfig  {
 
+
+
     @Bean
     public UserDetailsService userDetailsService(PasswordEncoder bCryptPasswordEncoder) {
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
@@ -54,28 +56,12 @@ public class ApplicationConfig  {
                 )
                 .formLogin((form) -> form
                                 .loginPage("/login")
-//                                .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/", true)
-//                                .failureUrl("/")
-                                .permitAll()
-                )
+                        .failureUrl("/login?error=true")
+                        .permitAll())
                 .logout((logout) -> logout.permitAll())
-                .exceptionHandling(
-                        (exceptionHandling) -> exceptionHandling
-                                .accessDeniedPage("/403")
-                )
-
-        ;
-
+                .exceptionHandling((exceptionHandling) -> exceptionHandling.accessDeniedPage("/403"));
         return http.build();
 
+
     }
-
-
-    // instead of defining open path in the method above you can do it here:
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/favicon.ico");
-    }
-
 }

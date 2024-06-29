@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>My Workouts</title>
+  <link rel="icon" type="image/png" href="/images/logo.png">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    .navbar-brand img {
+      height: 40px;
+    }
+    .navbar-nav .nav-link {
+      color: black !important;
+      font-weight: bold;
+    }
+    .navbar-nav .nav-link:hover {
+      color: #007bff !important;
+      transform: scale(1.1);
+    }
+    .workout-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .workout-details {
+      flex: 1;
+    }
+    .workout-action {
+      margin-left: auto;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" th:href="@{/}">
+    <img th:src="@{/images/logo.png}" alt="Logo">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/}">Home Page</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/shared/protein-count}">Protein Count</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/shared/recipes}">Recipes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/shared/my-workouts}">My Workouts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/sharing-the-process}">Sharing the Process</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <h1>My Workouts</h1>
+  <p>Track your workouts and progress here.</p>
+
+  <div class="row">
+    <div class="col-md-12">
+      <a class="btn btn-outline-primary mt-3" th:href="@{/shared/add-workout}">Add New Workout</a>
+      <br><br>
+      <h2>Workout List</h2>
+      <ul class="list-group">
+        <li class="list-group-item workout-item" th:each="workout : ${workouts}">
+          <div class="workout-details">
+            <strong>Type of Training:</strong> <span th:text="${workout.typeOfTraining}">Type of Training</span> -
+            <strong>Exercise Name:</strong> <span th:text="${workout.exerciseName}">Exercise Name</span> -
+            <strong>Working Weights:</strong> <span th:text="${workout.workingWeights}">Working Weights</span> kg -
+            <strong>Satisfaction with Performance:</strong> <span th:text="${workout.satisfactionWithPerformance}">Satisfaction with Performance</span> -
+            <strong>Satisfaction with Exercise:</strong> <span th:text="${workout.satisfactionWithExercise}">Satisfaction with Exercise</span>
+          </div>
+          <div class="workout-action">
+            <form th:action="@{/shared/delete-workout/{id}(id=${workout.id})}" method="post" class="ml-auto">
+              <button type="submit" class="btn btn-outline-danger btn-sm btn-outline-danger-custom">
+                <span>-</span>
+                <br>
+                <span>remove</span>
+              </button>
+            </form>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,37 +1,29 @@
 package hac.myworkoutapp.controllers;
 
-import hac.myworkoutapp.repo.Workout;
 import hac.myworkoutapp.repo.WorkoutRepository;
-import hac.myworkoutapp.services.WorkoutService;
-
-
+import hac.myworkoutapp.repo.Workout;
+import hac.myworkoutapp.repo.Post;
+import hac.myworkoutapp.repo.PostRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import jakarta.validation.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.CannotCreateTransactionException;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
-
-import java.util.HashMap;
-import java.util.Map;
+import jakarta.validation.*;
 
 
 @Controller
 public class MyController {
 
     private static Logger logger = LoggerFactory.getLogger(MyController.class);
+
+    @Autowired
+    private WorkoutRepository workoutRepository;
+
+    @Autowired
+    private PostRepository postRepository;
 
 
     @GetMapping("/")
@@ -44,31 +36,132 @@ public class MyController {
         return "login";
     }
 
-    @RequestMapping("/user/protein-count")
+    @RequestMapping("/shared/protein-count")
     public String userProteinCount() {
-        return "user/protein-count";
+        return "shared/protein-count";
     }
 
-    @RequestMapping("/user/recipes")
+    @PostMapping("/shared/protein-count")
+    public String calculateProtein(
+            @RequestParam("product") String product,
+            @RequestParam("weight") double weight,
+            Model model) {
+
+        double proteinPer100g;
+        switch (product) {
+            case "chicken":
+                proteinPer100g = 31;
+                break;
+            case "Beef steak":
+                proteinPer100g = 24;
+                break;
+            case "Beef ground 70% lean / 30% fat":
+                proteinPer100g = 14;
+                break;
+            case "fish (salmon)":
+                proteinPer100g = 20;
+                break;
+            case "fish (tilapia)":
+                proteinPer100g = 26;
+                break;
+            case "Tuna":
+                proteinPer100g = 28;
+                break;
+            case "Greek yogurt":
+                proteinPer100g = 10;
+                break;
+            case "Cottage cheese":
+                proteinPer100g = 11;
+                break;
+            case "Shrimp":
+                proteinPer100g = 24;
+                break;
+            case "Egg":
+                proteinPer100g = 13;
+                break;
+            case "Milk":
+                proteinPer100g = 3.4;
+                break;
+            case "Peanut butter":
+                proteinPer100g = 25;
+                break;
+            case "Tofu":
+                proteinPer100g = 8;
+                break;
+            case "Lentils":
+                proteinPer100g = 9;
+                break;
+            case "Chickpeas":
+                proteinPer100g = 19;
+                break;
+            case "Quinoa":
+                proteinPer100g = 19;
+                break;
+            default:
+                proteinPer100g = 0;
+        }
+
+        double protein = (weight / 100) * proteinPer100g;
+        model.addAttribute("protein", protein);
+        model.addAttribute("product", product);
+        model.addAttribute("weight", weight);
+
+        return "shared/protein-count";
+    }
+
+    @RequestMapping("/shared/recipes")
     public String userRecipes() {
-        return "user/recipes";
+        return "shared/recipes";
     }
 
-    @RequestMapping("/user/my-workouts")
-    public String userMyWorkouts() {
-        return "user/my-workouts";
+    @GetMapping("/shared/my-workouts")
+    public String userMyWorkouts(Model model) {
+        model.addAttribute("workouts", workoutRepository.findAll());
+        return "shared/my-workouts";
+    }
+
+    @GetMapping("/shared/add-workout")
+    public String userAddWorkout(Model model) {
+        model.addAttribute("workout", new Workout());
+        return "shared/add-workout";
+    }
+
+    @PostMapping("/shared/add-workout")
+    public String addWorkout(@Valid @ModelAttribute("workout") Workout workout, Model model) {
+        workoutRepository.save(workout);
+        return "redirect:/shared/my-workouts";
+    }
+
+    @PostMapping("/shared/delete-workout/{id}")
+    public String deleteWorkout(@PathVariable Long id) {
+        workoutRepository.deleteById(id);
+        return "redirect:/shared/my-workouts";
     }
 
     @GetMapping("/sharing-the-process")
-    public String userSharingTheProcess() {
+    public String userSharingTheProcess(Model model) {
+        model.addAttribute("posts", postRepository.findAll());
         return "sharing-the-process";
     }
 
-
-    @GetMapping("/user/add-workout")
-    public String showAddWorkoutForm() {
-        return "user/add-workout";
+    @GetMapping("/shared/add-post")
+    public String userAddPost(Model model) {
+        model.addAttribute("post", new Post());
+        return "shared/add-post";
     }
+
+    @PostMapping("/shared/add-post")
+    public String addPost(@Valid @ModelAttribute("post") Post post, Model model) {
+        postRepository.save(post);
+        return "redirect:/sharing-the-process";
+    }
+
+    @PostMapping("/shared/delete-post/{id}")
+    public String deletePost(@PathVariable Long id) {
+        postRepository.deleteById(id);
+        return "redirect:/sharing-the-process";
+    }
+
 
 
     @RequestMapping("/403")
@@ -94,5 +187,4 @@ public class MyController {
         model.addAttribute("errorMessage", errorMessage);
         return "error";
     }
-
 }

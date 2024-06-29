@@ -4,96 +4,105 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
 
-import jakarta.validation.constraints.*;
 import java.io.Serializable;
 
 @Entity
-public class Workout  {
+public class Workout implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotEmpty(message = "Name is mandatory")
-    private String userName;
+    @NotEmpty(message = "Type of training is mandatory")
+    private String typeOfTraining;
 
-    @NotEmpty(message = "Email is mandatory")
-    @Email(message = "Email should be valid")
-    private String email;
+    @NotEmpty(message = "Name of the exercise is mandatory")
+    private String exerciseName;
 
-    @PositiveOrZero(message = "Visits must be positive or zero")
-    @NotNull
-    private int visits = 0;
+    @Min(value = 0, message = "Working weights must be 0 or more")
+    private double workingWeights;
 
-    @Positive(message = "Age must be positive")
-    private int age;
+    @Min(value = 1, message = "Level of satisfaction with performance must be at least 1")
+    @Max(value = 5, message = "Level of satisfaction with performance must be at most 5")
+    private int satisfactionWithPerformance;
 
-    @Positive(message = "Current weight must be positive")
-    private double currentWeight;
+    @Min(value = 1, message = "Level of satisfaction with exercise must be at least 1")
+    @Max(value = 5, message = "Level of satisfaction with exercise must be at most 5")
+    private int satisfactionWithExercise;
+
+
 
     public Workout() {}
 
-    public Workout(String userName, String email, int age, double currentWeight) {
-        this.userName = userName;
-        this.email = email;
-        this.age = age;
-        this.currentWeight = currentWeight;
-    }
-
-    public int getVisits() {
-        return visits;
-    }
-    public void setVisits(int visits) {
-        this.visits = visits;
+    public Workout(String typeOfTraining, String exerciseName, double workingWeights, int satisfactionWithPerformance, int satisfactionWithExercise) {
+        this.typeOfTraining = typeOfTraining;
+        this.exerciseName = exerciseName;
+        this.workingWeights = workingWeights;
+        this.satisfactionWithPerformance = satisfactionWithPerformance;
+        this.satisfactionWithExercise = satisfactionWithExercise;
     }
 
     public long getId() {
         return id;
     }
+
     public void setId(long id) {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-    public void setUserName(String userName) {
-        if (userName.length() > 32)
-            throw new IllegalArgumentException("Name cannot exceed 32 characters");
-        this.userName = userName;
+    public String getTypeOfTraining() {
+        return typeOfTraining;
     }
 
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
+    public void setTypeOfTraining(String typeOfTraining) {
+        this.typeOfTraining = typeOfTraining;
     }
 
-    public int getAge() {
-        return age;
-    }
-    public void setAge(int age) {
-        this.age = age;
+    public String getExerciseName() {
+        return exerciseName;
     }
 
-    public double getCurrentWeight() {
-        return currentWeight;
+    public void setExerciseName(String exerciseName) {
+        this.exerciseName = exerciseName;
     }
-    public void setCurrentWeight(double currentWeight) {
-        this.currentWeight = currentWeight;
+
+    public double getWorkingWeights() {
+        return workingWeights;
+    }
+
+    public void setWorkingWeights(double workingWeights) {
+        this.workingWeights = workingWeights;
+    }
+
+    public int getSatisfactionWithPerformance() {
+        return satisfactionWithPerformance;
+    }
+
+    public void setSatisfactionWithPerformance(int satisfactionWithPerformance) {
+        this.satisfactionWithPerformance = satisfactionWithPerformance;
+    }
+
+    public int getSatisfactionWithExercise() {
+        return satisfactionWithExercise;
+    }
+
+    public void setSatisfactionWithExercise(int satisfactionWithExercise) {
+        this.satisfactionWithExercise = satisfactionWithExercise;
     }
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Workout{" +
                 "id=" + id +
-                ", userName='" + userName + '\'' +
-                ", email='" + email + '\'' +
-                ", visits=" + visits +
-                ", age=" + age +
-                ", currentWeight=" + currentWeight +
+                ", typeOfTraining='" + typeOfTraining + '\'' +
+                ", exerciseName='" + exerciseName + '\'' +
+                ", workingWeights=" + workingWeights +
+                ", satisfactionWithPerformance=" + satisfactionWithPerformance +
+                ", satisfactionWithExercise=" + satisfactionWithExercise +
                 '}';
     }
 }

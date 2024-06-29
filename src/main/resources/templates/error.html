@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Custom Error page</title>
+  <link rel="icon" type="image/png" href="/images/logo.png">
   <meta charset="utf-8" />
 
 </head>
@@ -10,6 +11,6 @@
 
 <p th:utext="${errorMessage}"></p>
 
-<a href="/static" th:href="@{/static}">Back to Home Page</a>
+<a href="/" th:href="@{/}">Back to Home Page</a>
 </body>
 </html>

@@ -7,22 +7,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-/** Service layer is used to implement business logic
- *  it is a good practice to separate the business logic from the controller
- *  and the repository
- *  this way the controller is only responsible for handling the request and response
- *  the repository is only responsible for the database operations
- *  and the service is responsible for the business logic
- */
 @Service
 public class WorkoutService {
+
     @Autowired
     private WorkoutRepository workoutRepository;
 
-    public List<Workout> findDuplicateUserNames(String userName) {
-        List<Workout> workout = workoutRepository.findByUserName(userName);
-        return workout;
+    public List<Workout> findWorkoutsByTypeOfTraining(String typeOfTraining) {
+        return workoutRepository.findByTypeOfTraining(typeOfTraining);
     }
 
+    public List<Workout> findWorkoutsByExerciseName(String exerciseName) {
+        return workoutRepository.findByExerciseName(exerciseName);
+    }
 
+    public List<Workout> findWorkoutsByWorkingWeights(double workingWeights) {
+        return workoutRepository.findByWorkingWeights(workingWeights);
+    }
+
+    public List<Workout> findWorkoutsByTypeOfTrainingAndExerciseName(String typeOfTraining, String exerciseName) {
+        return workoutRepository.findByTypeOfTrainingAndExerciseName(typeOfTraining, exerciseName);
+    }
+
+    public List<Workout> findFirst10WorkoutsByTypeOfTrainingDesc() {
+        return workoutRepository.findFirst10ByOrderByTypeOfTrainingDesc();
+    }
+
+    public void deleteWorkout(Long id) {
+        workoutRepository.deleteById(id);
+    }
 }
