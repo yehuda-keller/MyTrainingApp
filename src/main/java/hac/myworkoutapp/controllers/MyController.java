@@ -12,6 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import java.time.LocalDate;
 
 
 @Controller
@@ -146,7 +149,11 @@ public class MyController {
 
     @GetMapping("/shared/add-post")
     public String userAddPost(Model model) {
-        model.addAttribute("post", new Post());
+        Post post = new Post();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        post.setUserName(auth.getName());
+        post.setDate(LocalDate.now());
+        model.addAttribute("post", post);
         return "shared/add-post";
     }
 

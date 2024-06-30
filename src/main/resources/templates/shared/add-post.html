@@ -56,6 +56,8 @@
       <label for="titleOfTraining">Posts:</label>
       <input class="form-control" id="titleOfTraining" th:field="*{titleOfPost}" required>
     </div>
+    <input type="hidden" th:field="*{userName}">
+    <input type="hidden" th:field="*{date}">
     <button type="submit" class="btn btn-primary">Add New Post</button>
   </form>
 </div>

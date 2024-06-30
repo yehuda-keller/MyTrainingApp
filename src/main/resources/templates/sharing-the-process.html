@@ -77,6 +77,8 @@
                     <div class="card card-custom">
                         <div class="card-body">
                             <h5 class="card-title" th:text="${post.titleOfPost}">Title of Post</h5>
+                            <p class="card-text" th:text="${post.date}">Date of Post</p>
+                            <p class="card-text" th:text="${post.userName}">User Name</p>
                             <form th:action="@{/shared/delete-post/{id}(id=${post.id})}" method="post">
                                 <button type="submit" class="btn btn-outline-danger btn-sm btn-outline-danger-custom">
                                     Remove
@@ -94,4 +96,4 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-</html> 
+</html>
