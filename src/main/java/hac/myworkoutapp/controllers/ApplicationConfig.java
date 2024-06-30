@@ -29,8 +29,8 @@ public class ApplicationConfig  {
                 .password(bCryptPasswordEncoder.encode("password"))
                 .roles("ADMIN")
                 .build());
-        manager.createUser(User.withUsername("useradmin")
-                .password(bCryptPasswordEncoder.encode("password"))
+        manager.createUser(User.withUsername("yehudak@435")
+                .password(bCryptPasswordEncoder.encode("ykeller6128"))
                 .roles("USER", "ADMIN")
                 .build());
         return manager;

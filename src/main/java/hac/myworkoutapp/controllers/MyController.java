@@ -39,6 +39,12 @@ public class MyController {
         return "login";
     }
 
+    @RequestMapping("/admin/admin-page")
+    public String adminPage(Model model) {
+        model.addAttribute("posts", postRepository.findAll());
+        return "admin/admin-page";
+    }
+
     @RequestMapping("/shared/protein-count")
     public String userProteinCount() {
         return "shared/protein-count";

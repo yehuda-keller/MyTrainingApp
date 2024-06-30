@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Admin page</title>
+  <link rel="icon" type="image/png" href="/images/logo.png">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .navbar-brand img {
+      height: 40px;
+    }
+    .navbar-nav .nav-link {
+      color: black !important;
+      font-weight: bold;
+    }
+    .navbar-nav .nav-link:hover {
+      color: #007bff !important;
+      transform: scale(1.1);
+    }
+    .card-custom {
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" th:href="@{/}">
+    <img th:src="@{/images/logo.png}" alt="Logo">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/}">Home Page</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/shared/protein-count}">Protein Count</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/shared/recipes}">Recipes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/shared/my-workouts}">My Workouts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/sharing-the-process}">Sharing the Process</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item" sec:authorize="!isAuthenticated()">
+        <a class="nav-link" th:href="@{/login}">Login</a>
+      </li>
+      <li class="nav-item" sec:authorize="isAuthenticated()">
+        <!-- Logout form -->
+        <form th:action="@{/logout}" method="post" style="display:inline">
+          <button type="submit" class="nav-link btn btn-link" style="display:inline; cursor:pointer;">Logout</button>
+        </form>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <h1>Hello admin You can delete content as you wish</h1>
+  <div class="row">
+    <div class="col-md-12">
+      <br><br>
+      <h2>Posts</h2>
+      <div class="row">
+        <div class="col-md-4" th:each="post : ${posts}">
+          <div class="card card-custom">
+            <div class="card-body">
+              <h5 class="card-title" th:text="${post.titleOfPost}">Title of Post</h5>
+              <p class="card-text" th:text="${post.date}">Date of Post</p>
+              <p class="card-text" th:text="${post.userName}">User Name</p>
+              <form th:action="@{/shared/delete-post/{id}(id=${post.id})}" method="post">
+                <button type="submit" class="btn btn-outline-danger btn-sm btn-outline-danger-custom">
+                  Remove
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
