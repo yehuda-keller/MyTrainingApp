@@ -53,7 +53,7 @@
   <h1>Sharing The Process</h1>
   <form th:action="@{/shared/add-post}" th:object="${post}" method="post">
     <div class="form-group">
-      <label for="titleOfTraining">Posts:</label>
+      <label for="titleOfTraining">post:</label>
       <input class="form-control" id="titleOfTraining" th:field="*{titleOfPost}" required>
     </div>
     <input type="hidden" th:field="*{userName}">
