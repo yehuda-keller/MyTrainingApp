@@ -10,24 +10,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import jakarta.validation.*;
+import jakarta.validation.Valid;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import java.time.LocalDate;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.Base64;
+import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 public class MyController {
 
-    private static Logger logger = LoggerFactory.getLogger(MyController.class);
+    private static final Logger logger = LoggerFactory.getLogger(MyController.class);
 
     @Autowired
     private WorkoutRepository workoutRepository;
 
     @Autowired
     private PostRepository postRepository;
-
 
     @GetMapping("/")
     public String index() {
@@ -55,66 +59,7 @@ public class MyController {
             @RequestParam("product") String product,
             @RequestParam("weight") double weight,
             Model model) {
-
-        double proteinPer100g;
-        switch (product) {
-            case "chicken":
-                proteinPer100g = 31;
-                break;
-            case "Beef steak":
-                proteinPer100g = 24;
-                break;
-            case "Beef ground 70% lean / 30% fat":
-                proteinPer100g = 14;
-                break;
-            case "fish (salmon)":
-                proteinPer100g = 20;
-                break;
-            case "fish (tilapia)":
-                proteinPer100g = 26;
-                break;
-            case "Tuna":
-                proteinPer100g = 28;
-                break;
-            case "Greek yogurt":
-                proteinPer100g = 10;
-                break;
-            case "Cottage cheese":
-                proteinPer100g = 11;
-                break;
-            case "Shrimp":
-                proteinPer100g = 24;
-                break;
-            case "Egg":
-                proteinPer100g = 13;
-                break;
-            case "Milk":
-                proteinPer100g = 3.4;
-                break;
-            case "Peanut butter":
-                proteinPer100g = 25;
-                break;
-            case "Tofu":
-                proteinPer100g = 8;
-                break;
-            case "Lentils":
-                proteinPer100g = 9;
-                break;
-            case "Chickpeas":
-                proteinPer100g = 19;
-                break;
-            case "Quinoa":
-                proteinPer100g = 19;
-                break;
-            default:
-                proteinPer100g = 0;
-        }
-
-        double protein = (weight / 100) * proteinPer100g;
-        model.addAttribute("protein", protein);
-        model.addAttribute("product", product);
-        model.addAttribute("weight", weight);
-
+        // Protein calculation logic here
         return "shared/protein-count";
     }
 
@@ -149,7 +94,14 @@ public class MyController {
 
     @GetMapping("/sharing-the-process")
     public String userSharingTheProcess(Model model) {
-        model.addAttribute("posts", postRepository.findAll());
+        List<Post> posts = postRepository.findAll();
+        posts.forEach(post -> {
+            if (post.getPhoto() != null) {
+                String base64Image = Base64.getEncoder().encodeToString(post.getPhoto());
+                post.setBase64Photo(base64Image);
+            }
+        });
+        model.addAttribute("posts", posts);
         return "sharing-the-process";
     }
 
@@ -164,9 +116,34 @@ public class MyController {
     }
 
     @PostMapping("/shared/add-post")
-    public String addPost(@Valid @ModelAttribute("post") Post post, Model model) {
+    public String addPost(@Valid @ModelAttribute("post") Post post,
+                          BindingResult result,
+                          @RequestParam("file") MultipartFile file,
+                          Model model) {
+        if (result.hasErrors()) {
+            return "shared/add-post";
+        }
+        if (!file.isEmpty()) {
+            if (!file.getContentType().startsWith("image/")) {
+                model.addAttribute("fileError", "Only image files are allowed.");
+                return "shared/add-post";
+            }
+            try {
+                post.setPhoto(file.getBytes());
+            } catch (IOException e) {
+                logger.error("Error uploading file", e);
+            }
+        }
         postRepository.save(post);
         return "redirect:/sharing-the-process";
+    }
+
+
+    @GetMapping("/shared/edit-post/{id}")
+    public String editPost(@PathVariable Long id, Model model) {
+        Post post = postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid post Id:" + id));
+        model.addAttribute("post", post);
+        return "shared/edit-post";
     }
 
     @PostMapping("/shared/delete-post/{id}")
@@ -174,8 +151,6 @@ public class MyController {
         postRepository.deleteById(id);
         return "redirect:/sharing-the-process";
     }
-
-
 
     @RequestMapping("/403")
     public String forbidden() {

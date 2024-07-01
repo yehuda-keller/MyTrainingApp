@@ -1,9 +1,6 @@
 package hac.myworkoutapp.repo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
@@ -20,6 +17,8 @@ public class Post implements Serializable {
     @NotEmpty(message = "Title of Post is mandatory")
     private String titleOfPost;
 
+    private String description;
+
     @NotEmpty(message = "User name is mandatory")
     @Size(min = 3, max = 50, message = "User name must be between 3 and 50 characters")
     private String userName;
@@ -27,12 +26,22 @@ public class Post implements Serializable {
     @PastOrPresent(message = "Date cannot be in the future")
     private LocalDate date;
 
+    @Lob
+    @Column(name = "photo",
+            columnDefinition = "LONGBLOB")
+    private byte[] photo;
+
+    @Transient
+    private String base64Photo;
+
     public Post() {}
 
-    public Post(String titleOfPost, String userName, LocalDate date) {
+    public Post(String titleOfPost, String userName,String description, LocalDate date, byte[] photo) {
         this.titleOfPost = titleOfPost;
+        this.description = description;
         this.userName = userName;
         this.date = date;
+        this.photo = photo;
     }
 
     public long getId() {
@@ -51,6 +60,14 @@ public class Post implements Serializable {
         this.titleOfPost = titleOfPost;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getUserName() {
         return userName;
     }
@@ -67,13 +84,31 @@ public class Post implements Serializable {
         this.date = date;
     }
 
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
+    }
+
+    public String getBase64Photo() {
+        return base64Photo;
+    }
+
+    public void setBase64Photo(String base64Photo) {
+        this.base64Photo = base64Photo;
+    }
+
     @Override
     public String toString() {
         return "Post{" +
                 "id=" + id +
                 ", titleOfPost='" + titleOfPost + '\'' +
+                ", description='" + description + '\'' +
                 ", userName='" + userName + '\'' +
-                ", date=" + date +
+                ", date='" + date + '\'' +
+                ", photo=" + java.util.Arrays.toString(photo) +
                 '}';
     }
 }

@@ -50,11 +50,19 @@
 </nav>
 
 <div class="container mt-5">
-  <h1>Sharing The Process</h1>
-  <form th:action="@{/shared/add-post}" th:object="${post}" method="post">
+  <h1>Add New Post</h1>
+  <form th:action="@{/shared/add-post}" th:object="${post}" method="post" enctype="multipart/form-data">
     <div class="form-group">
-      <label for="titleOfTraining">post:</label>
-      <input class="form-control" id="titleOfTraining" th:field="*{titleOfPost}" required>
+      <label for="titleOfPost">Title of Post:</label>
+      <input class="form-control" id="titleOfPost" th:field="*{titleOfPost}" required>
+    </div>
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <input class="form-control" id="description" th:field="*{description}">
+    </div>
+    <div class="form-group">
+      <label for="file">Upload Photo:</label>
+      <input type="file" class="form-control-file" id="file" name="file">
     </div>
     <input type="hidden" th:field="*{userName}">
     <input type="hidden" th:field="*{date}">
