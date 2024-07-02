@@ -24,7 +24,7 @@ With our application you can track your training and share your progress with ev
 
 | Home Screen | Protein Count Screen| Recipes Screen | My Workouts Courses |
 |-------------|------------------|------------------|-------------------------|
-| <img src="src/main/resources/static/images/homePage.png" alt="Home Screen" width="200" height="150"/> | <img src="src/main/resources/static/images/roteinCount.png" alt="Courses Overview" width="200" height="150"/> | <img src="src/main/resources/static/images/user home screen.png" alt="User Home Screen" width="200" height="150"/> | <img src="src/main/resources/static/images/User Registered courses.png" alt="User Registered Courses" width="200" height="150"/> |
+| <img src="src/main/resources/static/images/homePage.png" alt="Home Screen" width="200" height="150"/> | <img src="src/main/resources/static/images/proteinCount.png" alt="Protein Count" width="200" height="150"/> | <img src="src/main/resources/static/images/recipes.png" alt="Recipes Screen" width="200" height="150"/> | <img src="src/main/resources/static/images/myWorkots.png" alt="My Workouts" width="200" height="150"/> |
 
 | User Schedule Management | Admin Home Screen | Admin Manage Courses | Admin Manage Registration |
 |--------------------------|-------------------|----------------------|---------------------------|
