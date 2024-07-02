@@ -111,14 +111,12 @@ Before running the MyWorkouts APP, ensure the following configurations:
 
 ### Credentials
 - **Administrator:**
-  - Username: admin@hac.com
-  - Password: 12345
+  - Username: admin
+  - Password: password
 - **Students:**
-  - Multiple student usernames and passwords provided:
-    - username: noam@hac.com, password: 1234
-    - username: ariel@hac.com, password: 1234
-    - username: tomer@hac.com, password: 1234
-    - username: yudi@hac.com, password: 1234
+  - Multiple users usernames and passwords provided:
+    - username: user, password: password
+    - username: yehudak@435 password: ykeller
 
 ## Usage
 ### Administrators
