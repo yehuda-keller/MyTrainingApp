@@ -24,11 +24,11 @@ With our application you can track your training and share your progress with ev
 
 | Home Screen | Protein Count Screen| Recipes Screen | My Workouts Courses |
 |-------------|------------------|------------------|-------------------------|
-| <img src="src/main/resources/static/images/homePage.png" alt="Home Screen" width="200" height="150"/> | <img src="src/main/resources/static/images/proteinCount.png" alt="Protein Count" width="200" height="150"/> | <img src="src/main/resources/static/images/recipes.png" alt="Recipes Screen" width="200" height="150"/> | <img src="src/main/resources/static/images/myWorkots.png" alt="My Workouts" width="200" height="150"/> |
+| <img src="src/main/resources/static/images/homePage.png" alt="Home Screen" width="200" height="150"/> | <img src="src/main/resources/static/images/proteinCount.png" alt="Protein Count" width="200" height="150"/> | <img src="src/main/resources/static/images/recipes.png" alt="Recipes Screen" width="200" height="150"/> | <img src="src/main/resources/static/images/myWorkouts.png" alt="My Workouts" width="200" height="150"/> |
 
-| User Schedule Management | Admin Home Screen | Admin Manage Courses | Admin Manage Registration |
+| Sharing the Process | Admin Home Screen | login |
 |--------------------------|-------------------|----------------------|---------------------------|
-| <img src="src/main/resources/static/images/User schedule manage.png" alt="User Schedule Management" width="200" height="150"/> | <img src="src/main/resources/static/images/admin home screen.png" alt="Admin Home Screen" width="200" height="150"/> | <img src="src/main/resources/static/images/admin manage courses.png" alt="Admin Manage Courses" width="200" height="150"/> | <img src="src/main/resources/static/images/admin manage registration.png" alt="Admin Manage Registration" width="200" height="150"/> |
+| <img src="src/main/resources/static/images/SharingTheProcess.png" alt="Sharing the Process" width="200" height="150"/> | <img src="src/main/resources/static/images/adminPage.png" alt="Admin Home Screen" width="200" height="150"/> | <img src="src/main/resources/static/images/admin manage courses.png" alt="Admin Manage Courses" width="200" height="150"/> | <img src="src/main/resources/static/images/login.png" alt="login" width="200" height="150"/> |
 
 
 ## Overview
