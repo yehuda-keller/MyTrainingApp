@@ -1,3 +1,4 @@
+
 package hac.myworkoutapp.controllers;
 
 import hac.myworkoutapp.repo.WorkoutRepository;
@@ -59,7 +60,66 @@ public class MyController {
             @RequestParam("product") String product,
             @RequestParam("weight") double weight,
             Model model) {
-        // Protein calculation logic here
+
+        double proteinPer100g;
+        switch (product) {
+            case "chicken":
+                proteinPer100g = 31;
+                break;
+            case "Beef steak":
+                proteinPer100g = 24;
+                break;
+            case "Beef ground 70% lean / 30% fat":
+                proteinPer100g = 14;
+                break;
+            case "fish (salmon)":
+                proteinPer100g = 20;
+                break;
+            case "fish (tilapia)":
+                proteinPer100g = 26;
+                break;
+            case "Tuna":
+                proteinPer100g = 28;
+                break;
+            case "Greek yogurt":
+                proteinPer100g = 10;
+                break;
+            case "Cottage cheese":
+                proteinPer100g = 11;
+                break;
+            case "Shrimp":
+                proteinPer100g = 24;
+                break;
+            case "Egg":
+                proteinPer100g = 13;
+                break;
+            case "Milk":
+                proteinPer100g = 3.4;
+                break;
+            case "Peanut butter":
+                proteinPer100g = 25;
+                break;
+            case "Tofu":
+                proteinPer100g = 8;
+                break;
+            case "Lentils":
+                proteinPer100g = 9;
+                break;
+            case "Chickpeas":
+                proteinPer100g = 19;
+                break;
+            case "Quinoa":
+                proteinPer100g = 19;
+                break;
+            default:
+                proteinPer100g = 0;
+        }
+
+        double protein = (weight / 100) * proteinPer100g;
+        model.addAttribute("protein", protein);
+        model.addAttribute("product", product);
+        model.addAttribute("weight", weight);
+
         return "shared/protein-count";
     }
 

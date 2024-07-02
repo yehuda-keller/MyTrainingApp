@@ -9,6 +9,11 @@
     <style>
         body {
             background-color: gainsboro;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
         }
         .navbar-brand img {
             height: 40px;
@@ -41,6 +46,25 @@
         }
         .fst-italic {
             font-style: italic;
+        }
+        .card {
+            background-color: gainsboro;
+            border: none;
+        }
+        .content-wrapper {
+            display: flex;
+            flex: 1;
+            width: 100%;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+        .background {
+            width: 50%;
+            background-image: url('/images/background.png');
+            background-size: cover;
+            background-position: center;
         }
     </style>
 </head>
@@ -85,15 +109,75 @@
     </div>
 </nav>
 
-<div class="container mt-5">
-    <div sec:authorize="!isAuthenticated()">
-        <h1 class="fst-italic">Hello, guest!</h1>
+<div class="content-wrapper">
+    <div class="content">
+        <div sec:authorize="!isAuthenticated()">
+            <h1 class="fst-italic">Hello, guest!</h1>
+        </div>
+        <div sec:authorize="isAuthenticated()">
+            <h1 class="headline">Hello, <span sec:authentication="name"></span>!</h1>
+        </div>
+        <h2 class="headline">Welcome to your fitness app.</h2><br>
+        <h2>A place where you can share the process and track your progress</h2>
+
+        <div class="container mt-5">
+            <h5>Essential Ways to Track Your Fitness</h5>
+            <div id="fitnessCarousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Take Body Measurements</h5>
+                                <p class="card-text">Use a flexible tape measure to track changes in body composition. Measure areas like your waist, hips, and arms to monitor progress beyond just weight.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Take Progress Photos</h5>
+                                <p class="card-text">Take weekly or monthly photos in the same location and lighting to visually track your progress. Wear the same clothes to see changes more clearly.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Test out Your RM (Rep-Max)</h5>
+                                <p class="card-text">Measure the maximum weight you can lift for a given exercise. Track your RM to gauge strength improvements over time.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Create a Workout Journal</h5>
+                                <p class="card-text">Keep a workout journal to record your exercises, progress, and goals. This can help you stay motivated and organized.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Consider Your Waist-to-Hip Ratio</h5>
+                                <p class="card-text">Calculate your waist-to-hip ratio by dividing your waist measurement by your hip measurement. This can be an indicator of overall health and fitness.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#fitnessCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#fitnessCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
     </div>
-    <div sec:authorize="isAuthenticated()">
-        <h1 class="headline">Hello, <span sec:authentication="name"></span>!</h1>
-    </div>
-    <h2 class="headline">Welcome to your fitness app.</h2><br>
-       <h2> A place where you can share the process and track your progress</h2>
+
+    <div class="background"></div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
