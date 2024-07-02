@@ -30,7 +30,7 @@ public class ApplicationConfig  {
                 .roles("ADMIN")
                 .build());
         manager.createUser(User.withUsername("yehudak@435")
-                .password(bCryptPasswordEncoder.encode("ykeller6128"))
+                .password(bCryptPasswordEncoder.encode("ykeller"))
                 .roles("USER", "ADMIN")
                 .build());
         return manager;
