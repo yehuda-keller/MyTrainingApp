@@ -1,9 +1,9 @@
-# MyWorkouts APP
+### MyWorkouts APP
 
 ## Table of Contents
 - [Introduction](#introduction)
-- [Image Preview](#Image-Preview)
-- [Overview](#Overview)
+- [Image Preview](#image-preview)
+- [Overview](#overview)
 - [Features](#features)
 - [Installation](#installation)
   - [MAMP Setup](#mamp-setup)
@@ -18,7 +18,7 @@
 - [Contributing](#contributing)
 
 ## Introduction
-With our application you can track your training and share your progress with everyone
+MyWorkouts APP is designed to help users track their training progress, share their fitness journey, and achieve their workout goals through personalized plans and community support.
 
 ## Image Preview
 
@@ -28,36 +28,44 @@ With our application you can track your training and share your progress with ev
 
 | Sharing the Process | Admin Home Screen | Login |
 |--------------------------|-------------------|----------------------|
-| <img src="src/main/resources/static/images/SharingTheProcess.png" alt="Sharing the Process" width="200" height="150"/> | <img src="src/main/resources/static/images/adminPage.png" alt="Admin Home Screen" width="200" height="150"/> | <img src="src/main/resources/static/images/admin manage courses.png" alt="Admin Manage Courses" width="200" height="150"/> | <img src="src/main/resources/static/images/login.png" alt="Login" width="200" height="150"/> |
-
+| <img src="src/main/resources/static/images/SharingTheProcess.png" alt="Sharing the Process" width="200" height="150"/> | <img src="src/main/resources/static/images/adminPage.png" alt="Admin Home Screen" width="200" height="150"/> | <img src="src/main/resources/static/images/login.png" alt="Login" width="200" height="150"/> 
 
 ## Overview
-The OCR EDU system provides a comprehensive platform for educational institutions to streamline the process of managing courses and student registrations. With a user-friendly interface and robust functionalities, it caters to the distinct needs of both administrators and students.
+**MyWorkoutApp** is an innovative and user-friendly fitness application designed to help users achieve their fitness goals through personalized workout plans, nutritional tracking, and progress monitoring. The app is built using modern web technologies and integrates seamlessly with various devices, providing users with a holistic approach to fitness management.
 
-### Administrator Dashboard
-Administrators have access to a feature-rich dashboard enabling them to efficiently oversee and manage courses and student registrations. They can perform tasks such as creating new courses, updating existing ones, managing capacities, viewing all courses and associated registrations, and employing various filters to streamline data retrieval.
+### Key Features
 
-### Student Interface
-Students benefit from a simplified interface that allows them to explore available courses, register for their preferred ones, view their registered courses, and conveniently cancel registrations as needed. The system ensures a seamless experience for students navigating course selections and registrations.
+1. **Personalized Workout Plans**:
+   - Users can create and customize their workout routines based on their fitness goals, whether it be muscle gain, weight loss, or general fitness.
+   - Access to a wide range of exercises with detailed instructions and video demonstrations.
 
-## Features
-- **Administrators:**
-  - Create, update, and delete courses
-  - View all courses and student registrations
-  - Filter registrations by course name, student name, course status, and specific course-student pairs
+2. **Nutritional Tracking**:
+   - Track daily protein intake and other macronutrients to ensure dietary goals are met.
+   - Explore and share healthy recipes within the community.
 
-- **Students:**
-  - View available courses
-  - Register for courses
-  - View registered courses
-  - Cancel course registrations
+3. **Progress Monitoring**:
+   - Track body measurements and weight changes over time.
+   - Take and compare progress photos to visually document fitness journey.
+   - Monitor strength improvements by recording maximum weights lifted (Rep-Max).
 
-- **Authentication:**
-  - Login and logout for administrators and students
+4. **Community Engagement**:
+   - Share workout routines, progress photos, and achievements with other users.
+   - Participate in discussions and provide support within the 'Sharing the Process' section.
+
+5. **User Authentication and Security**:
+   - Secure login and registration system with role-based access control.
+   - Different access levels for admins and registered users to manage content and user interactions.
+
+6. **Responsive Design**:
+   - Fully responsive layout that adapts to different screen sizes and devices, ensuring a seamless user experience whether on a desktop, tablet, or mobile phone.
+
+7. **Interactive Features**:
+   - Integrated fitness carousel highlighting essential fitness tracking tips and resources.
+   - Interactive elements such as progress bars, charts, and visual indicators to motivate users and track goals.
 
 ## Installation
 
-Before running the OCR EDU application, ensure the following configurations:
+Before running the MyWorkouts APP, ensure the following configurations:
 
 ### MAMP Setup
 1. **Create User in MAMP:**
@@ -103,32 +111,32 @@ Before running the OCR EDU application, ensure the following configurations:
 
 ### Credentials
 - **Administrator:**
-  - Username: admin@hac.com
-  - Password: 12345
+  - Username: admin
+  - Password: password
 - **Students:**
-  - Multiple student usernames and passwords provided:
-    - username: noam@hac.com, password: 1234
-    - username: ariel@hac.com, password: 1234
-    - username: tomer@hac.com, password: 1234
-    - username: yudi@hac.com, password: 1234
-
+  - Multiple users usernames and passwords provided:
+    - username: user, password: password
+    - username: yehudak@435 password: ykeller
 
 ## Usage
 ### Administrators
-- **Course Management:**
-  - Create, update, and delete courses
-  - View all courses and student registrations
-  - Filter registrations
+- **User Management:**
+  - Manage user roles and access levels
+  - View user activity and progress
+- **Content Management:**
+  - Create, update, and delete workouts and recipes
+  - Moderate community posts and interactions
 
-### Students
-- **Course Enrollment:**
-  - View available courses
-  - Register for courses
-  - View registered courses
-  - Cancel course registrations
+### Users
+- **Workout Management:**
+  - Create and follow personalized workout plans
+  - Log workout progress and track achievements
+- **Nutritional Tracking:**
+  - Monitor daily protein and nutrient intake
+  - Share and discover recipes
 
 ## Technologies Used
-- Java
+- React
 - Spring Boot
 - Spring Security
 - Spring Data JPA
@@ -139,13 +147,13 @@ Before running the OCR EDU application, ensure the following configurations:
 
 ## Database and Relations
 ### Bidirectional Association
-We maintain bidirectional associations between `Course` and `CourseRegistration` entities for efficient data access and management.
+We maintain bidirectional associations between `User`, `Workout`, and `Recipe` entities for efficient data access and management.
 
 ### Schema - Important Data
-- Uniqueness constraint on course registrations: `course_id` and `student_name`.
+- Uniqueness constraint on user progress tracking: `user_id` and `workout_id`.
 
 ## Tests
-Run tests for various scenarios including registration, editing, deletion, and validations.
+Run tests for various scenarios including user registration, workout logging, nutritional tracking, and validations.
 
 ## Security
 Utilizes Spring Security for authentication and authorization to ensure restricted access for authorized users.
