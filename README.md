@@ -26,9 +26,9 @@ With our application you can track your training and share your progress with ev
 |-------------|------------------|------------------|-------------------------|
 | <img src="src/main/resources/static/images/homePage.png" alt="Home Screen" width="200" height="150"/> | <img src="src/main/resources/static/images/proteinCount.png" alt="Protein Count" width="200" height="150"/> | <img src="src/main/resources/static/images/recipes.png" alt="Recipes Screen" width="200" height="150"/> | <img src="src/main/resources/static/images/myWorkouts.png" alt="My Workouts" width="200" height="150"/> |
 
-| Sharing the Process | Admin Home Screen | login |
+| Sharing the Process | Admin Home Screen | Login |
 |--------------------------|-------------------|----------------------|
-| <img src="src/main/resources/static/images/SharingTheProcess.png" alt="Sharing the Process" width="200" height="150"/> | <img src="src/main/resources/static/images/adminPage.png" alt="Admin Home Screen" width="200" height="150"/> | <img src="src/main/resources/static/images/admin manage courses.png" alt="Admin Manage Courses" width="200" height="150"/> | <img src="src/main/resources/static/images/login.png" alt="login" width="200" height="150"/> |
+| <img src="src/main/resources/static/images/SharingTheProcess.png" alt="Sharing the Process" width="200" height="150"/> | <img src="src/main/resources/static/images/adminPage.png" alt="Admin Home Screen" width="200" height="150"/> | <img src="src/main/resources/static/images/admin manage courses.png" alt="Admin Manage Courses" width="200" height="150"/> | <img src="src/main/resources/static/images/login.png" alt="Login" width="200" height="150"/> |
 
 
 ## Overview
